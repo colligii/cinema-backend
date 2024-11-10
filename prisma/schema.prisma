@@ -14,7 +14,39 @@ datasource db {
 }
 
 model User {
-    id  String  @id @default(uuid())
-    userName    String  @db.VarChar(50)
-    password    String  @db.VarChar(255)
+  id       String    @id @default(uuid())
+  role     UserRole  @default(GUEST)
+  userName String    @db.VarChar(50)
+  password String?   @db.VarChar(255)
+  sessions Session[]
+  invites  Invites[]
+}
+
+model Invites {
+  sessionId String
+  status    InviteStatus @default(PENDING)
+  session   Session      @relation(fields: [sessionId], references: [id])
+  userId    String
+  user      User         @relation(fields: [userId], references: [id])
+
+  @@id([sessionId, userId])
+}
+
+model Session {
+  id          String    @id @default(uuid())
+  name        String    @db.VarChar(50)
+  createdById String
+  createdBy   User      @relation(fields: [createdById], references: [id])
+  invites     Invites[]
+}
+
+enum InviteStatus {
+  ACCEPTED
+  REFUSED
+  PENDING
+}
+
+enum UserRole {
+  ADMIN
+  GUEST
 }

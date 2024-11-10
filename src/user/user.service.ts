@@ -23,12 +23,16 @@ export class UserService implements UserServiceInterface {
         if(_user)
             throw new CustomError(400, 'Usuário com esse id já existente')
 
+        if(!user.password)
+            throw new CustomError(400, 'O usuário precisa de uma senha para ser criado!')
+
         const _password = await this._bcrypt.hash(user.password, 12)
 
         const createdUser = this.userRepository.createUser({
             id: user.id,
             userName: user.userName,
-            password: _password
+            password: _password,
+            role: user.role
         })
 
         return createdUser;
