@@ -14,7 +14,7 @@ class OnInit {
             const userPayload: User = {
                 id: process.env.DEFAULT_ADMIN_UUID as string,
                 userName: process.env.DEFAULT_USER as string,
-                password: process.env.DEFAULT_ADMIN_UUID as string
+                password: process.env.DEFAULT_PASSWORD as string
             }
 
             const _user = await userService.findById(userPayload);

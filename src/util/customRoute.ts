@@ -14,9 +14,9 @@ export class CustomRoute {
 
     private handleRequestToController(controller: unknown) {
         return (method: (...props: any[]) => any) => {
-            return (req: Request, res: Response, ...props: any[]) => {
+            return async (req: Request, res: Response, ...props: any[]) => {
                 try {
-                    method.call(controller, req, res, ...props)
+                    await method.call(controller, req, res, ...props)
                 } catch(e) {
                     if(e instanceof CustomError) {
                         res.status(e.status).json(e)
@@ -30,6 +30,10 @@ export class CustomRoute {
 
     public get(path: string, method: string) {
         this.routes.get(path, this.request(this.controller[method]))
+    }
+
+    public post(path: string, method: string) {
+        this.routes.post(path, this.request(this.controller[method]))
     }
 
 }

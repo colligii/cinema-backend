@@ -1,6 +1,7 @@
 import "reflect-metadata";
 import express from "express";
 import router from "./routes";
+import cookieParser from "cookie-parser";
 import OnInit from "./on-init.script";
 import { myContainer } from "./inversify.config";
 
@@ -10,6 +11,7 @@ const start = async () => {
     const PORT = process.env.PORT || 3000;
 
     app.use(express.json())
+    app.use(cookieParser())
     app.use('/api', router)
 
     await OnInit.execute();
