@@ -19,7 +19,7 @@ export class UserRepository implements UserRepositoryInterface {
             throw new Error('Filtros sem usuário ou id')
 
         const user = await this._prismaClient.user.findFirst({
-            where: _where
+            where: {..._where, isActive: true}
         });
 
         return user;

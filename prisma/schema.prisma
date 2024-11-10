@@ -16,7 +16,8 @@ datasource db {
 model User {
   id       String    @id @default(uuid())
   role     UserRole  @default(GUEST)
-  userName String    @db.VarChar(50)
+  isActive Boolean   @default(true)
+  userName String    @db.VarChar(50)    @unique
   password String?   @db.VarChar(255)
   sessions Session[]
   invites  Invites[]
@@ -34,7 +35,7 @@ model Invites {
 
 model Session {
   id          String    @id @default(uuid())
-  name        String    @db.VarChar(50)
+  name        String    @unique @db.VarChar(50)
   createdById String
   createdBy   User      @relation(fields: [createdById], references: [id])
   invites     Invites[]

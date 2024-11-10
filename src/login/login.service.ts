@@ -52,11 +52,22 @@ export class LoginService implements LoginServiceInterface {
         next();
     }
 
+    validateRole(roles: string[]) {
+        return (async (req: LoginMiddleWareRequest, res: Response, next: () => void) => {
+            const rolesSet = new Set(roles);
+            await this.middlewareLogin(req, res, next)
+            if(!rolesSet.has(req.user.role)) {
+                throw new CustomError(401, 'Usuário não permitido acessar está sessão')
+            }
+        }).bind(this)
+    } 
+
 }
 
 export interface LoginServiceInterface {
     login: (partialUser: Omit<User, 'id'>) => Promise<string>
-    middlewareLogin(req: Request, res: Response, next: () => void): void
+    middlewareLogin(req: Request, res: Response, next: () => void): void,
+    validateRole(roles: string[]): (req: LoginMiddleWareRequest, res: Response, next: () => void) => unknown
 }
 
 export type LoginMiddleWareRequest = Request & { user: User }
