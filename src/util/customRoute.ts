@@ -1,4 +1,5 @@
-import Router from "express";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Router, { Request, Response } from "express";
 
 export class CustomRoute {
     
@@ -13,7 +14,17 @@ export class CustomRoute {
 
     private handleRequestToController(controller: unknown) {
         return (method: (...props: any[]) => any) => {
-            return method.bind(controller)
+            return (req: Request, res: Response, ...props: any[]) => {
+                try {
+                    method.call(controller, req, res, ...props)
+                } catch(e) {
+                    if(e instanceof CustomError) {
+                        res.status(e.status).json(e)
+                        return;
+                    }
+                    res.status(500).json({ message: 'Error not binded' })
+                }
+            }
         }
     }
 
@@ -24,3 +35,10 @@ export class CustomRoute {
 }
 
 export default CustomRoute
+
+export class CustomError {
+    constructor(
+        public status: number,
+        public message: string
+    ) {}
+}

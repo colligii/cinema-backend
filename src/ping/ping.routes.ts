@@ -1,8 +1,8 @@
 import { PingController } from "./ping.controller";
 import CustomRoute from "../util/customRoute";
 
-const _pingRoutes = new CustomRoute(new PingController())
+const _routes = new CustomRoute(new PingController())
 
-_pingRoutes.get('/', 'pong')
+_routes.get('/', 'pong')
 
-export default _pingRoutes.routes;
+export default _routes.routes;
