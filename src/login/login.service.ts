@@ -32,5 +32,5 @@ export class LoginService implements LoginServiceInterface {
 }
 
 export interface LoginServiceInterface {
-    login: (partialUser: Omit<User, 'id'>) => string
+    login: (partialUser: Omit<User, 'id'>) => Promise<string>
 }
