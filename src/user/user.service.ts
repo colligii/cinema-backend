@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 import { inject, injectable } from "inversify";
-import { UserRepository } from "./user.repository";
+import { CreatedUser, UserRepository } from "./user.repository";
 import { TYPES } from "../injection/types";
 import { CustomError } from "../util/customRoute";
 import bcrypt from "bcrypt"
@@ -17,22 +17,28 @@ export class UserService implements UserServiceInterface {
         return _user;
     }
 
-    async createUser(user: User) {
-        const _user = await this.userRepository.findUserByIdOrUserName(user.id, user.userName);
+    async createUser(user: CreatedUser) {
+        const _user = await this.userRepository.findUserByIdOrUserName(user.id, user.userName, user.email);
 
         if(_user)
             throw new CustomError(400, 'Usuário com esse id já existente')
 
-        if(!user.password)
+        if(!user.password && user.isActive)
             throw new CustomError(400, 'O usuário precisa de uma senha para ser criado!')
+        
+        let _password = null;
 
-        const _password = await this._bcrypt.hash(user.password, 12)
+        if(user.password) {
+            _password = await this._bcrypt.hash(user.password, 12)
+        }
 
         const createdUser = this.userRepository.createUser({
-            id: user.id,
             userName: user.userName,
             password: _password,
-            role: user.role
+            role: user.role,
+            isActive: user.isActive,
+            email: user.email,
+            ...(user.id ? { id: user.id } : {})
         })
 
         return createdUser;
@@ -41,5 +47,5 @@ export class UserService implements UserServiceInterface {
 
 export interface UserServiceInterface {
     findById(user: User): Promise<User | null>
-    createUser(user: User): Promise<User> 
+    createUser(user: CreatedUser): Promise<User> 
 }

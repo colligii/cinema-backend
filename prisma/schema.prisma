@@ -17,7 +17,8 @@ model User {
   id       String    @id @default(uuid())
   role     UserRole  @default(GUEST)
   isActive Boolean   @default(true)
-  userName String    @db.VarChar(50)    @unique
+  userName String?    @unique @db.VarChar(50)
+  email    String    @unique @db.VarChar(255)
   password String?   @db.VarChar(255)
   sessions Session[]
   invites  Invites[]

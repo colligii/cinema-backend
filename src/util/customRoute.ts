@@ -24,10 +24,17 @@ export class CustomRoute {
                     }
 
                     if(methodProps?.middleware) {
-                        let next = false;
-                        await methodProps.middleware(req, res, () => next = true)
-                        if(!next) {
-                            return res.end()
+                        
+                        if(!Array.isArray(methodProps.middleware))
+                            methodProps.middleware = [methodProps.middleware];
+                        
+                        for(let i = 0; i < methodProps.middleware.length; i++) {
+                            const middleware = methodProps.middleware[i];
+                            let next = false;
+                            await middleware(req, res, () => next = true)
+                            if(!next) {
+                                return res.end()
+                            }
                         }
                     }
 
@@ -60,5 +67,12 @@ export class CustomError {
     constructor(
         public status: number,
         public message: any
+    ) {}
+}
+
+export class DefaultMessage {
+    constructor(
+        public message: any,
+        public status: number = 200,
     ) {}
 }

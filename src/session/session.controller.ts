@@ -15,8 +15,14 @@ export class SessionController implements SessionControllerInterface {
         res.json(_session)
     }
 
+    async inviteUserToSession(req: LoginMiddleWareRequest, res: Response) {
+        const message = await this.sessionService.inviteUser(req.body?.session, req.body.email, req.user.id)
+        res.json(message)
+    }
+
 }
 
 export interface SessionControllerInterface {
     createSession(req: LoginMiddleWareRequest, res: Response): void
+    inviteUserToSession(req: LoginMiddleWareRequest, res: Response): void
 }

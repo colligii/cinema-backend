@@ -1,4 +1,4 @@
-import { PrismaClient, Session } from "@prisma/client";
+import { Prisma, PrismaClient, Session } from "@prisma/client";
 import { injectable } from "inversify";
 
 @injectable()
@@ -14,11 +14,12 @@ export class SessionRepository implements SessionRepositoryInterface {
         })
     }
 
-    getSessionByName(name: string) {
+    getSessionByName(name: string, include?: Prisma.SessionInclude) {
         return this._prismaClient.session.findFirst({
             where: {
                 name
-            }
+            },
+            include: include
         })
     }
 
@@ -35,7 +36,7 @@ export class SessionRepository implements SessionRepositoryInterface {
 
 export interface SessionRepositoryInterface {
     getSessionById(id: string): Promise<Session | null>
-    getSessionByName(name: string): Promise<Session | null>
+    getSessionByName(name: string, include?: Prisma.SessionInclude): Promise<Session | null>
     createSession(name: string, userId: string): Promise<Session>
 }
 
