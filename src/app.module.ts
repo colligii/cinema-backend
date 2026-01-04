@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MovieModule } from './movie/movie.module';
 import 'dotenv/config'
 import { Movie } from './movie/entity/movie.entity';
+import { IndicativeRatingModule } from './indicative_rating/indicative_rating.module';
+import { IndicativeRating } from './indicative_rating/entity/indicative_rating.entity';
 
 @Module({
   imports: [
@@ -13,10 +15,14 @@ import { Movie } from './movie/entity/movie.entity';
       username: process.env.DB_USER,
       password: process.env.DB_PASS,
       database: process.env.DB_DATA,
-      entities: [Movie],
+      entities: [
+        Movie,
+        IndicativeRating
+      ],
       synchronize: true
     }),
-    MovieModule
+    MovieModule,
+    IndicativeRatingModule
   ],
 })
 export class AppModule {}

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { IndicativeRating } from "src/indicative_rating/entity/indicative_rating.entity";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Movie {
@@ -22,4 +23,8 @@ export class Movie {
 
     @Column({ type: 'text' })
     trailerUrl: string;
+
+    @ManyToOne(() => IndicativeRating, (indicativeRating) => indicativeRating.id)
+    @JoinColumn({ name: 'indicative_rating_id' })
+    indicativeRating: IndicativeRating;
 }
