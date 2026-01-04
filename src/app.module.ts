@@ -7,6 +7,8 @@ import { IndicativeRatingModule } from './indicative_rating/indicative_rating.mo
 import { IndicativeRating } from './indicative_rating/entity/indicative_rating.entity';
 import { PosterModule } from './poster/poster.module';
 import { Poster } from './poster/entity/poster.entity';
+import { GenresModule } from './genres/genres.module';
+import { Genres } from './genres/entity/genres.entity';
 
 @Module({
   imports: [
@@ -20,13 +22,15 @@ import { Poster } from './poster/entity/poster.entity';
       entities: [
         Movie,
         IndicativeRating,
-        Poster
+        Poster,
+        Genres
       ],
       synchronize: true
     }),
     MovieModule,
     IndicativeRatingModule,
-    PosterModule
+    PosterModule,
+    GenresModule
   ],
 })
 export class AppModule {}
