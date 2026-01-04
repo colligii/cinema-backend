@@ -6,6 +6,7 @@ import { Movie } from './movie/entity/movie.entity';
 import { IndicativeRatingModule } from './indicative_rating/indicative_rating.module';
 import { IndicativeRating } from './indicative_rating/entity/indicative_rating.entity';
 import { PosterModule } from './poster/poster.module';
+import { Poster } from './poster/entity/poster.entity';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { PosterModule } from './poster/poster.module';
       database: process.env.DB_DATA,
       entities: [
         Movie,
-        IndicativeRating
+        IndicativeRating,
+        Poster
       ],
       synchronize: true
     }),
