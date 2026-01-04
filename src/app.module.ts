@@ -16,6 +16,8 @@ import { ClientModule } from './client/client.module';
 import { Client } from './client/entity/client.entity';
 import { MovieRoomModule } from './movie_room/movie_room.module';
 import { MovieRoom } from './movie_room/entity/movie_room.entity';
+import { MovieSessionModule } from './movie_session/movie_session.module';
+import { MovieSession } from './movie_session/entity/movie_session.entity';
 
 @Module({
   imports: [
@@ -34,7 +36,8 @@ import { MovieRoom } from './movie_room/entity/movie_room.entity';
         MovieCast,
         Cast,
         Client,
-        MovieRoom
+        MovieRoom,
+        MovieSession
       ],
       synchronize: true
     }),
@@ -44,7 +47,8 @@ import { MovieRoom } from './movie_room/entity/movie_room.entity';
     GenresModule,
     CastModule,
     ClientModule,
-    MovieRoomModule
+    MovieRoomModule,
+    MovieSessionModule
   ],
 })
 export class AppModule {}
