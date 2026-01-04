@@ -12,6 +12,8 @@ import { Genres } from './genres/entity/genres.entity';
 import { CastModule } from './cast/cast.module';
 import { MovieCast } from './cast/entity/movie_cast.entity';
 import { Cast } from './cast/entity/cast.entity';
+import { ClientModule } from './client/client.module';
+import { Client } from './client/entity/client.entity';
 
 @Module({
   imports: [
@@ -28,7 +30,8 @@ import { Cast } from './cast/entity/cast.entity';
         Poster,
         Genres,
         MovieCast,
-        Cast
+        Cast,
+        Client
       ],
       synchronize: true
     }),
@@ -36,7 +39,8 @@ import { Cast } from './cast/entity/cast.entity';
     IndicativeRatingModule,
     PosterModule,
     GenresModule,
-    CastModule
+    CastModule,
+    ClientModule
   ],
 })
 export class AppModule {}
