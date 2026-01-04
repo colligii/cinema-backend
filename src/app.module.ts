@@ -5,6 +5,7 @@ import 'dotenv/config'
 import { Movie } from './movie/entity/movie.entity';
 import { IndicativeRatingModule } from './indicative_rating/indicative_rating.module';
 import { IndicativeRating } from './indicative_rating/entity/indicative_rating.entity';
+import { PosterModule } from './poster/poster.module';
 
 @Module({
   imports: [
@@ -22,7 +23,8 @@ import { IndicativeRating } from './indicative_rating/entity/indicative_rating.e
       synchronize: true
     }),
     MovieModule,
-    IndicativeRatingModule
+    IndicativeRatingModule,
+    PosterModule
   ],
 })
 export class AppModule {}
