@@ -9,6 +9,9 @@ import { PosterModule } from './poster/poster.module';
 import { Poster } from './poster/entity/poster.entity';
 import { GenresModule } from './genres/genres.module';
 import { Genres } from './genres/entity/genres.entity';
+import { CastModule } from './cast/cast.module';
+import { MovieCast } from './cast/entity/movie_cast.entity';
+import { Cast } from './cast/entity/cast.entity';
 
 @Module({
   imports: [
@@ -23,14 +26,17 @@ import { Genres } from './genres/entity/genres.entity';
         Movie,
         IndicativeRating,
         Poster,
-        Genres
+        Genres,
+        MovieCast,
+        Cast
       ],
       synchronize: true
     }),
     MovieModule,
     IndicativeRatingModule,
     PosterModule,
-    GenresModule
+    GenresModule,
+    CastModule
   ],
 })
 export class AppModule {}
