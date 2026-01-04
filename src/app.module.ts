@@ -18,6 +18,7 @@ import { MovieRoomModule } from './movie_room/movie_room.module';
 import { MovieRoom } from './movie_room/entity/movie_room.entity';
 import { MovieSessionModule } from './movie_session/movie_session.module';
 import { MovieSession } from './movie_session/entity/movie_session.entity';
+import { MovieRoomSeats } from './movie_room/entity/movie_room_seats.entity';
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { MovieSession } from './movie_session/entity/movie_session.entity';
         Cast,
         Client,
         MovieRoom,
-        MovieSession
+        MovieSession,
+        MovieRoomSeats
       ],
       synchronize: true
     }),

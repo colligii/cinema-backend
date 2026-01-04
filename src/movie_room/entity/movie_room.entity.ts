@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { MovieRoomSeats } from "./movie_room_seats.entity";
 
 @Entity()
 export class MovieRoom {
@@ -7,4 +8,7 @@ export class MovieRoom {
 
     @Column({ type: 'varchar', length: 10 })
     code: string
+
+    @OneToMany(() => MovieRoomSeats, movieRoomSeats => movieRoomSeats.id)
+    movieRoomSeats: MovieRoomSeats[]
 }
