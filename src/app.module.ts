@@ -14,6 +14,8 @@ import { MovieCast } from './cast/entity/movie_cast.entity';
 import { Cast } from './cast/entity/cast.entity';
 import { ClientModule } from './client/client.module';
 import { Client } from './client/entity/client.entity';
+import { MovieRoomModule } from './movie_room/movie_room.module';
+import { MovieRoom } from './movie_room/entity/movie_room.entity';
 
 @Module({
   imports: [
@@ -31,7 +33,8 @@ import { Client } from './client/entity/client.entity';
         Genres,
         MovieCast,
         Cast,
-        Client
+        Client,
+        MovieRoom
       ],
       synchronize: true
     }),
@@ -40,7 +43,8 @@ import { Client } from './client/entity/client.entity';
     PosterModule,
     GenresModule,
     CastModule,
-    ClientModule
+    ClientModule,
+    MovieRoomModule
   ],
 })
 export class AppModule {}
