@@ -1,0 +1,144 @@
+Table poster {
+  id uuid [pk]
+  poster_url text
+  poster_width float
+  poster_height float
+  poster_type PosterType
+  movie_id uuid [ref: < movie.id]
+}
+
+table movie_session {
+  id uuid [pk]
+  type MovieType
+  start_datetime datetime
+  end_datetime datetime
+  movie_id uuid [ref: < movie.id]
+  movie_room_id uuid [ref: < movie_room.id]
+}
+
+table movie_room {
+  id uuid [pk]
+  code varchar(10)
+}
+
+table movie_room_seats {
+  id uuid 
+  code varchar(4) // A30 B21 ZA12
+  movie_room_id uuid [ref: < movie_room.id]
+
+  Indexes {
+    (code, movie_room_id) [unique]
+  }
+}
+
+table reserved_seats {
+  movie_room_seats_id uuid [ref: < movie_room_seats.id]
+  movie_session_id uuid [ref: < movie_session.id]
+  client_id uuid [ref: < client.id]
+
+  Indexes {
+    (movie_room_seats_id, movie_session_id) [unique]
+  }
+}
+
+table indicative_rating {
+  id uuid [pk]
+  code varchar(10)
+  min_age int
+}
+
+Table movie {
+  id uuid [pk]
+  name varchar(255)
+  coverArt text
+  description text
+  duration int
+  isReleased bool
+  trailer_url text
+  indicative_rating_id uuid [ref: < indicative_rating.id]
+}
+
+table movie_genres {
+  movie_id uuid [ref: < movie.id]
+  genres_id uuid [ref: < genres.id]
+
+  Indexes {
+    (movie_id, genres_id) [unique]
+  }
+}
+
+table movie_cast {
+  movie_id uuid [ref: < movie.id]
+  cast_id uuid [ref: < cast.id]
+  type CastType
+
+  Indexes {
+    (movie_id, cast_id, type) [unique]
+  }
+}
+
+table cast {
+  id uuid [pk]
+  name varchar(255)
+}
+
+table genres {
+  id uuid [pk]
+  name varchar(50)
+}
+
+table client {
+  id uuid [pk]
+  name varchar(255)
+  email varchar(255) [unique]
+  document varchar(50) [unique]
+}
+
+table user {
+  id uuid [pk]
+  name varchar(255)
+  email varchar(255) [unique]
+  password varchar(255)
+  role_id uuid [ref: < role.id]
+}
+
+table role {
+  id uuid [pk]
+  name varchar(50)
+}
+
+table role_permission {
+  role_id uuid [ref: < role.id]
+  permission_id uuid [ref: < permission.id]
+
+  Indexes {
+    (role_id, permission_id) [unique]
+  }
+}
+
+table session {
+  id uuid [pk]
+  user_id uuid [ref: < user.id]
+  expireDate datetime
+}
+
+table permission {
+  id uuid [pk]
+  code varchar(50)
+  description text
+}
+
+enum PosterType {
+  banner
+  square
+}
+
+enum CastType {
+  director
+  actor
+}
+
+enum MovieType {
+  dub
+  leg
+}
