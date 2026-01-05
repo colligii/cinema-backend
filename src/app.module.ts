@@ -25,6 +25,7 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entity/user.entity';
 import { RoleModule } from './role/role.module';
 import { Role } from './role/entity/role.entity';
+import { PermissionModule } from './permission/permission.module';
 
 @Module({
   imports: [
@@ -62,7 +63,8 @@ import { Role } from './role/entity/role.entity';
     MovieSessionModule,
     ReservedSeatsModule,
     UserModule,
-    RoleModule
+    RoleModule,
+    PermissionModule
   ],
 })
 export class AppModule {}
