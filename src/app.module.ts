@@ -28,6 +28,7 @@ import { Role } from './role/entity/role.entity';
 import { PermissionModule } from './permission/permission.module';
 import { SessionModule } from './session/session.module';
 import { Session } from './session/entity/session.entity';
+import { Permission } from './permission/entity/permission.entity';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { Session } from './session/entity/session.entity';
         MovieSession,
         MovieRoomSeats,
         ReservedSeats,
+        Permission,
         User,
         Role,
         Session
