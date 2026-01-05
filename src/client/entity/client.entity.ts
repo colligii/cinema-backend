@@ -9,12 +9,12 @@ export class Client {
     @Column({ type: 'varchar', length: 255 })
     name: string
 
-    @Column({ type: 'varchar', length: 255 })
+    @Column({ type: 'varchar', length: 255, unique: true })
     email: string
 
-    @Column({ type: 'varchar', length: 50 })
+    @Column({ type: 'varchar', length: 50, unique: true })
     document: string
 
-    @OneToMany(() => ReservedSeats, reservedSeats => reservedSeats.client_id)
-    client: Client
+    @OneToMany(() => ReservedSeats, reservedSeats => reservedSeats.client)
+    reservedSeats: ReservedSeats[]
 }

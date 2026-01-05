@@ -1,7 +1,7 @@
 import { Client } from "src/client/entity/client.entity";
 import { MovieRoomSeats } from "src/movie_room/entity/movie_room_seats.entity";
 import { MovieSession } from "src/movie_session/entity/movie_session.entity";
-import { Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class ReservedSeats {
@@ -10,9 +10,6 @@ export class ReservedSeats {
 
     @PrimaryColumn()
     movie_session_id: string;
-
-    @PrimaryColumn()
-    client_id: string;
 
     @ManyToOne(() => MovieRoomSeats, movieRoomSeats => movieRoomSeats.id)
     @JoinColumn({ name: 'movie_room_seat_id' })
