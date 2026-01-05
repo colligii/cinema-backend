@@ -1,6 +1,7 @@
 import { Movie } from "src/movie/entity/movie.entity";
 import { MovieRoom } from "src/movie_room/entity/movie_room.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ReservedSeats } from "src/reserved_seats/entity/reserved_seats.entity";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class MovieSession {
@@ -24,4 +25,6 @@ export class MovieSession {
     @JoinColumn({ name: 'movie_room_id' })
     movieRoom: MovieRoom;
 
+    @OneToMany(() => ReservedSeats, reservedSeats => reservedSeats.movie_session_id)
+    movieSession: MovieSession;
 }

@@ -19,6 +19,8 @@ import { MovieRoom } from './movie_room/entity/movie_room.entity';
 import { MovieSessionModule } from './movie_session/movie_session.module';
 import { MovieSession } from './movie_session/entity/movie_session.entity';
 import { MovieRoomSeats } from './movie_room/entity/movie_room_seats.entity';
+import { ReservedSeatsModule } from './reserved_seats/reserved_seats.module';
+import { ReservedSeats } from './reserved_seats/entity/reserved_seats.entity';
 
 @Module({
   imports: [
@@ -39,7 +41,8 @@ import { MovieRoomSeats } from './movie_room/entity/movie_room_seats.entity';
         Client,
         MovieRoom,
         MovieSession,
-        MovieRoomSeats
+        MovieRoomSeats,
+        ReservedSeats
       ],
       synchronize: true
     }),
@@ -50,7 +53,8 @@ import { MovieRoomSeats } from './movie_room/entity/movie_room_seats.entity';
     CastModule,
     ClientModule,
     MovieRoomModule,
-    MovieSessionModule
+    MovieSessionModule,
+    ReservedSeatsModule
   ],
 })
 export class AppModule {}
