@@ -1,10 +1,21 @@
-Table poster {
+table poster {
   id uuid [pk]
-  poster_url text
-  poster_width float
-  poster_height float
-  poster_type PosterType
+  url text
+  width float
+  height float
+  type PosterType
   movie_id uuid [ref: < movie.id]
+}
+
+table movie {
+  id uuid [pk]
+  name varchar(255)
+  coverArt text
+  description text
+  duration int
+  isReleased bool
+  trailer_url text
+  indicative_rating_id uuid [ref: < indicative_rating.id, not null]
 }
 
 table movie_session {
@@ -22,7 +33,7 @@ table movie_room {
 }
 
 table movie_room_seats {
-  id uuid 
+  id uuid
   code varchar(4) // A30 B21 ZA12
   movie_room_id uuid [ref: < movie_room.id]
 
@@ -45,17 +56,6 @@ table indicative_rating {
   id uuid [pk]
   code varchar(10)
   min_age int
-}
-
-Table movie {
-  id uuid [pk]
-  name varchar(255)
-  coverArt text
-  description text
-  duration int
-  isReleased bool
-  trailer_url text
-  indicative_rating_id uuid [ref: < indicative_rating.id]
 }
 
 table movie_genres {
