@@ -1,6 +1,12 @@
 import { Movie } from "src/movie/entity/movie.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
+
+export enum Banner {
+    banner = 'banner',
+    square = 'square'
+}
+
 @Entity()
 export class Poster {
     @PrimaryGeneratedColumn('uuid')
@@ -15,8 +21,8 @@ export class Poster {
     @Column({ type: 'float' })
     height: number;
 
-    @Column({ type: 'enum', enum: ['banner', 'square'] })
-    type: string;
+    @Column({ type: 'enum', enum: Banner })
+    type: Banner;
 
     @ManyToOne(() => Movie, (movie) => movie.id)
     @JoinColumn({ name: 'movie_id' })

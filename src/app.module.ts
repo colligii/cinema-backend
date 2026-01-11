@@ -29,9 +29,16 @@ import { PermissionModule } from './permission/permission.module';
 import { SessionModule } from './session/session.module';
 import { Session } from './session/entity/session.entity';
 import { Permission } from './permission/entity/permission.entity';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      playground: true,
+      autoSchemaFile: true,
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -56,7 +63,7 @@ import { Permission } from './permission/entity/permission.entity';
         Role,
         Session
       ],
-      synchronize: true
+      synchronize: false
     }),
     MovieModule,
     IndicativeRatingModule,

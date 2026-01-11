@@ -17,6 +17,12 @@ export class MovieSession {
     @Column({ type: 'timestamp' })
     endDateTime: Date;
 
+    @Column({ type: 'uuid' })
+    movie_id: string;
+
+    @Column({ type: 'uuid' })
+    movie_room_id: string;
+
     @ManyToOne(() => Movie, movie => movie.id)
     @JoinColumn({ name: 'movie_id' })
     movie: Movie

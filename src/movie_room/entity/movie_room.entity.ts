@@ -9,6 +9,6 @@ export class MovieRoom {
     @Column({ type: 'varchar', length: 10 })
     code: string
 
-    @OneToMany(() => MovieRoomSeats, movieRoomSeats => movieRoomSeats.id)
+    @OneToMany(() => MovieRoomSeats, movieRoomSeats => movieRoomSeats.movieRoom)
     movieRoomSeats: MovieRoomSeats[]
 }

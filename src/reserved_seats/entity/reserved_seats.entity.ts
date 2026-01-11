@@ -11,7 +11,7 @@ export class ReservedSeats {
     @PrimaryColumn()
     movie_session_id: string;
 
-    @ManyToOne(() => MovieRoomSeats, movieRoomSeats => movieRoomSeats.id)
+    @ManyToOne(() => MovieRoomSeats, movieRoomSeats => movieRoomSeats.reservedSeats)
     @JoinColumn({ name: 'movie_room_seat_id' })
     movieRoomSeat: MovieRoomSeats
 

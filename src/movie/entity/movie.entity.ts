@@ -26,6 +26,9 @@ export class Movie {
     @Column({ type: 'text' })
     trailerUrl: string;
 
+    @Column({ type: 'uuid' })
+    indicative_rating_id: string;
+
     @ManyToOne(() => IndicativeRating, (indicativeRating) => indicativeRating.id)
     @JoinColumn({ name: 'indicative_rating_id' })
     indicativeRating: IndicativeRating;
