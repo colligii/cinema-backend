@@ -31,6 +31,7 @@ import { Session } from './session/entity/session.entity';
 import { Permission } from './permission/entity/permission.entity';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { PaginationBuilder } from './utils/pagination/service/pagination_builder.service';
 
 @Module({
   imports: [
@@ -78,6 +79,6 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     RoleModule,
     PermissionModule,
     SessionModule
-  ],
+  ]
 })
 export class AppModule {}
