@@ -1,5 +1,24 @@
 # Cinema Backend Project
 
+## TODO
+
+- [X] Create CRUD Users
+- [X] Create CRUD Indicative Rating
+- [X] Create CRUD Permissions
+- [ ] Create CRUD Role
+- [ ] Create Module/Refactor RBAC 
+- [ ] Create CRUD RBAC 
+- [ ] Create CRUD CAST
+- [ ] Create CRUD Client
+- [ ] Create CRUD Genres
+- [ ] Create CRUD Movie
+- [ ] Create CRUD Movie ROOM
+- [ ] Create CRUD Movie Session
+- [ ] Create CRUD Poster
+- [ ] Create CRUD Reserved Seats
+- [ ] Create CRUD Session
+
+
 ## SQL Database
 
 <img width="1180" height="1740" alt="Cinema System (2)" src="https://github.com/user-attachments/assets/359ec9bf-9c64-4488-bf6a-9e6144dcf922" />
