@@ -21,17 +21,14 @@ import { MovieSession } from './movie_session/entity/movie_session.entity';
 import { MovieRoomSeats } from './movie_room/entity/movie_room_seats.entity';
 import { ReservedSeatsModule } from './reserved_seats/reserved_seats.module';
 import { ReservedSeats } from './reserved_seats/entity/reserved_seats.entity';
-import { UserModule } from './user/user.module';
-import { User } from './user/entity/user.entity';
-import { RoleModule } from './role/role.module';
-import { Role } from './role/entity/role.entity';
-import { PermissionModule } from './permission/permission.module';
-import { SessionModule } from './session/session.module';
-import { Session } from './session/entity/session.entity';
-import { Permission } from './permission/entity/permission.entity';
+import { User } from './auth/user/entity/user.entity';
+import { Role } from './auth/role/entity/role.entity';
+import { SessionModule } from './auth/session/session.module';
+import { Session } from './auth/session/entity/session.entity';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { PaginationBuilder } from './utils/pagination/service/pagination_builder.service';
+import { AuthModule } from './auth/auth.module';
+import { Permission } from './auth/permission/entity/permission.entity';
 
 @Module({
   imports: [
@@ -59,8 +56,8 @@ import { PaginationBuilder } from './utils/pagination/service/pagination_builder
         MovieSession,
         MovieRoomSeats,
         ReservedSeats,
-        Permission,
         User,
+        Permission,
         Role,
         Session
       ],
@@ -75,10 +72,8 @@ import { PaginationBuilder } from './utils/pagination/service/pagination_builder
     MovieRoomModule,
     MovieSessionModule,
     ReservedSeatsModule,
-    UserModule,
-    RoleModule,
-    PermissionModule,
-    SessionModule
+    SessionModule,
+    AuthModule
   ]
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Session } from "src/session/entity/session.entity";
+import { Session } from "../../session/entity/session.entity";
 import { Field, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
