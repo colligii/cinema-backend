@@ -5,6 +5,8 @@ import { CreateRole } from '../dto/create_role.dto';
 import { PaginatedRoleResponse } from '../dto/paginated_role_response.dto';
 import { PaginatedInput } from 'src/utils/pagination/dto/paginated_input';
 import { UpdateRole } from '../dto/update_role.dto ';
+import { RoleWithPermissionsResponse } from '../dto/role_with_permissions_response.dto';
+import { AssignRoleWithPermission } from '../dto/assign_role_with_permission.dto';
 
 @Resolver()
 export class RoleResolver {
@@ -48,5 +50,13 @@ export class RoleResolver {
     ): Promise<Role> {
         return this.roleService.deleteRole(id);
     }
+
+    @Mutation(() => RoleWithPermissionsResponse)
+    async assignRoleWithPermission(
+        @Args('body') body: AssignRoleWithPermission
+    ) {
+        return this.roleService.assignRoleWithPermission(body);
+    }
+
 
 }

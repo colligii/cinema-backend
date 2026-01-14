@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource, Repository } from 'typeorm';
+import { DataSource, In, Repository } from 'typeorm';
 import { Role } from '../entity/role.entity';
 import { PaginationBuilder } from 'src/utils/pagination/service/pagination_builder.service';
 import { CreateRole } from '../dto/create_role.dto';
@@ -8,12 +8,19 @@ import { RoleHelper } from '../helper/role.helper';
 import { PaginatedInput } from 'src/utils/pagination/dto/paginated_input';
 import { PaginatedRoleResponse } from '../dto/paginated_role_response.dto';
 import { UpdateRole } from '../dto/update_role.dto ';
+import { RoleWithPermissionsResponse } from '../dto/role_with_permissions_response.dto';
+import { AssignRoleWithPermission } from '../dto/assign_role_with_permission.dto';
+import { Permission } from 'src/auth/permission/entity/permission.entity';
+import { PermissionHelper } from 'src/auth/permission/helper/permission.helper';
+import { permission } from 'process';
 
 @Injectable()
 export class RoleService {
     constructor(
         @InjectRepository(Role)
         private readonly roleRepository: Repository<Role>,
+        @InjectRepository(Permission)
+        private readonly permissionRepository: Repository<Permission>,
         private readonly dataSource: DataSource,
         private readonly paginationBuilder: PaginationBuilder
     ) {}
@@ -87,6 +94,33 @@ export class RoleService {
             throw new NotFoundException(RoleHelper.RoleNotExists);
 
         this.roleRepository.delete(id)
+        return findedRole;
+    }
+
+    async assignRoleWithPermission(body: AssignRoleWithPermission): Promise<RoleWithPermissionsResponse> {
+        const findedRole = await this.roleRepository.findOne({
+            where: {
+                id: body.roleId
+            }
+        })
+
+        if(!findedRole)
+            throw new NotFoundException(RoleHelper.RoleNotExists);
+    
+
+        const findedPermissions = await this.permissionRepository.find({
+            where: {
+                id: In(body.permissionIds)
+            }
+        })
+
+        if(body.permissionIds?.length !== findedPermissions?.length)
+            throw new NotFoundException(PermissionHelper.SomePermissionIdNotExists)
+
+        findedRole.permission = findedPermissions;
+
+        await this.roleRepository.save(findedRole);
+        
         return findedRole;
     }
 }
