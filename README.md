@@ -5,7 +5,7 @@
 - [X] Create CRUD Users
 - [X] Create CRUD Indicative Rating
 - [X] Create CRUD Permissions
-- [ ] Create CRUD Role
+- [X] Create CRUD Role
 - [ ] Create Module/Refactor RBAC 
 - [ ] Create CRUD RBAC 
 - [ ] Create CRUD CAST
