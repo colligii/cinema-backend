@@ -6,8 +6,8 @@
 - [X] Create CRUD Indicative Rating
 - [X] Create CRUD Permissions
 - [X] Create CRUD Role
-- [ ] Create Module/Refactor RBAC 
-- [ ] Create CRUD RBAC 
+- [X] Create Module/Refactor
+- [ ] Finish Permission And Role Crud
 - [ ] Create CRUD CAST
 - [ ] Create CRUD Client
 - [ ] Create CRUD Genres
