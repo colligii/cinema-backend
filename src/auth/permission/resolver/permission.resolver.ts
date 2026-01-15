@@ -5,6 +5,8 @@ import { Permission } from '../entity/permission.entity';
 import { PaginatedPermissionResponse } from '../dto/paginated_permission.dto';
 import { PaginatedInput } from 'src/utils/pagination/dto/paginated_input';
 import { UpdatePermission } from '../dto/update-permission.dto';
+import { PermissionWithCategoryResponse } from '../dto/permission_with_category_response.dto';
+
 @Resolver()
 export class PermissionResolver {
 
@@ -19,7 +21,7 @@ export class PermissionResolver {
         return this.permissionService.createPermission(body)
     }
 
-    @Query(() => Permission)
+    @Query(() => PermissionWithCategoryResponse)
     async getPermissionById(
         @Args('id') id: string
     ): Promise<Permission> {

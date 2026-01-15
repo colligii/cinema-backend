@@ -13,6 +13,6 @@ export class PermissionCategory {
     @Column({ type: 'varchar', length: 255, unique: true })
     code: string;
 
-    @OneToMany(() => Permission, permission => permission.permissionCategory)
+    @OneToMany(() => Permission, permission => permission.permission_category)
     permission?: Permission[];
 }

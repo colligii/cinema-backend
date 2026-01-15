@@ -26,8 +26,10 @@ export class Permission {
     @JoinTable({ name: 'role_permission' })
     role: Role[]
 
-    @Field({ nullable: true })
+    @Column({ type: 'uuid', nullable: false })
+    permission_category_id: string;
+
     @ManyToOne(() => PermissionCategory)
     @JoinColumn({ name: 'permission_category_id' })
-    permissionCategory: PermissionCategory;
+    permission_category: PermissionCategory;
 }

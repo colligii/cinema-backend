@@ -7,4 +7,8 @@ export class PermissionHelper {
     static PermissionNotExists = 'Permission.PermissionNotExists'
     static IdIsString = 'Permission.IdIsString'
     static SomePermissionIdNotExists = 'Permission.SomePermissionIdNotExists'
+    static PermissionIDIsUUID = 'Permission.PermissionIDIsUUID'
+    static PermissionIdIsNotEmpty = 'Permission.PermissionIdIsNotEmpty'
+    static PermissionCategoryIdIsUUID = 'Permission.PermissionCategoryIdIsUUID'
+    static PermissionCategoryIDIsNotEmpty = 'Permission.PermissionCategoryIDIsNotEmpty'
 }
