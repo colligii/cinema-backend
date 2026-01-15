@@ -23,10 +23,10 @@ export class RoleResolver {
         return this.roleService.createRole(body);
     }
 
-    @Query(() => Role)
+    @Query(() => RoleWithPermissionsResponse)
     async getRoleById(
         @Args('id') id: string
-    ): Promise<Role> {
+    ): Promise<RoleWithPermissionsResponse> {
         return this.roleService.getRoleById(id);
     }
 

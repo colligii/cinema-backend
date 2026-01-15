@@ -44,11 +44,14 @@ export class RoleService {
         })
     }
 
-    async getRoleById(id: string): Promise<Role> {
+    async getRoleById(id: string): Promise<RoleWithPermissionsResponse> {
         const findedRole = await this.roleRepository.findOne({
             where: {
                 id
-            }
+            },
+            relations: [
+                'permission'
+            ]
         })
 
         if(!findedRole)
