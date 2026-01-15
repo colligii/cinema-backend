@@ -29,6 +29,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './auth/auth.module';
 import { Permission } from './auth/permission/entity/permission.entity';
+import { PermissionCategory } from './auth/permission/entity/permission_category.entity';
 
 @Module({
   imports: [
@@ -59,7 +60,8 @@ import { Permission } from './auth/permission/entity/permission.entity';
         User,
         Permission,
         Role,
-        Session
+        Session,
+        PermissionCategory
       ],
       synchronize: false
     }),

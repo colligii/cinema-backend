@@ -1,6 +1,7 @@
 import { Field, ObjectType } from "@nestjs/graphql";
 import { Role } from "../../role/entity/role.entity";
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { PermissionCategory } from "./permission_category.entity";
 
 @ObjectType()
 @Entity()
@@ -25,4 +26,8 @@ export class Permission {
     @JoinTable({ name: 'role_permission' })
     role: Role[]
 
+    @Field({ nullable: true })
+    @ManyToOne(() => PermissionCategory)
+    @JoinColumn({ name: 'permission_category_id' })
+    permissionCategory: PermissionCategory;
 }
