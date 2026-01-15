@@ -8,7 +8,7 @@
 - [X] Create CRUD Role
 - [X] Create Module/Refactor
 - [X] Finish Permission And Role Crud
-- [ ] Create CRUD CAST
+- [X] Create CRUD CAST
 - [ ] Create CRUD Client
 - [ ] Create CRUD Genres
 - [ ] Create CRUD Movie
