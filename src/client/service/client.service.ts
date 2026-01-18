@@ -55,7 +55,8 @@ export class ClientService {
 
     async getClientById(id: string): Promise<Client> {
         const findedClient = await this.clientRepository.findOne({
-            where: { id }
+            where: { id },
+            withDeleted: true
         })
 
         if (!findedClient)
@@ -66,6 +67,7 @@ export class ClientService {
 
     async paginatedClient(body: PaginatedInput): Promise<PaginatedClientResponse> {
         const clientQueryBuilder = this.clientRepository.createQueryBuilder('client')
+            .withDeleted()
 
         return this.paginationBuilder
             .buildPaginationClass(clientQueryBuilder)
@@ -82,7 +84,7 @@ export class ClientService {
                 },
                 lock: {
                     mode: 'pessimistic_write'
-                }
+                },
             })
 
             if(!findedClient)
@@ -102,7 +104,7 @@ export class ClientService {
                 },
                 lock: {
                     mode: 'pessimistic_write'
-                }
+                },
             })
 
             if(!findedClient)
@@ -127,6 +129,22 @@ export class ClientService {
             throw new NotFoundException(ClientHelper.NotFound);
 
         await this.clientRepository.softDelete(id);
+
+        return findedClient;
+    }
+
+    async restoreClient(id: string): Promise<Client> {
+        const findedClient = await this.clientRepository.findOne({
+            where: {
+                id
+            },
+            withDeleted: true
+        })
+
+        if(!findedClient)
+            throw new NotFoundException(ClientHelper.NotFound);
+
+        await this.clientRepository.recover(findedClient);
 
         return findedClient;
     }

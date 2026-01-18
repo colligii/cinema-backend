@@ -55,4 +55,11 @@ export class ClientResolver {
         return this.clientService.deleteClient(id);
     }
 
+    @Mutation(() => Client)
+    async restoreClient(
+        @Args('id') id: string
+    ): Promise<Client> {
+        return this.clientService.restoreClient(id);
+    }
+
 }
