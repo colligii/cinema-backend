@@ -10,8 +10,9 @@
 - [X] Finish Permission And Role Crud
 - [X] Create CRUD CAST
 - [X] Create CRUD Client
-- [ ] Create CRUD Genres
+- [X] Create CRUD Genres
 - [ ] Create CRUD Movie
+- [ ] Test delete Genres with movie associated and not associated
 - [ ] Create CRUD Movie ROOM
 - [ ] Create CRUD Movie Session
 - [ ] Create CRUD Poster

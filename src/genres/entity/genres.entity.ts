@@ -1,13 +1,21 @@
+import { Field, ObjectType } from "@nestjs/graphql";
 import { Movie } from "src/movie/entity/movie.entity";
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
+@ObjectType()
 @Entity()
 export class Genres {
+    @Field()
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column({ type: 'varchar', length: 50 })
+    @Field()
+    @Column({ type: 'varchar', length: 50, unique: true })
     name: string;
+
+    @Field()
+    @CreateDateColumn()
+    created_at: Date;
 
     @ManyToMany(() => Movie, (movie) => movie.genres)
     @JoinTable({ name: 'movie_genres' })
