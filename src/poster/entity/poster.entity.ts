@@ -1,4 +1,4 @@
-import { Movie } from "src/movie/entity/movie.entity";
+import { Movie } from "src/catalog/movie/entity/movie.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 

@@ -1,6 +1,6 @@
-import { MovieCast } from "src/cast/entity/movie_cast.entity";
-import { Genres } from "src/genres/entity/genres.entity";
-import { IndicativeRating } from "src/indicative_rating/entity/indicative_rating.entity";
+import { MovieCast } from "src/catalog/cast/entity/movie_cast.entity";
+import { Genres } from "src/catalog/genres/entity/genres.entity";
+import { IndicativeRating } from "src/catalog/indicative_rating/entity/indicative_rating.entity";
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()

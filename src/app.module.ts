@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { MovieModule } from './movie/movie.module';
+import { MovieModule } from './catalog/movie/movie.module';
 import 'dotenv/config'
-import { Movie } from './movie/entity/movie.entity';
-import { IndicativeRatingModule } from './indicative_rating/indicative_rating.module';
-import { IndicativeRating } from './indicative_rating/entity/indicative_rating.entity';
+import { Movie } from './catalog/movie/entity/movie.entity';
+import { IndicativeRatingModule } from './catalog/indicative_rating/indicative_rating.module';
+import { IndicativeRating } from './catalog/indicative_rating/entity/indicative_rating.entity';
 import { PosterModule } from './poster/poster.module';
 import { Poster } from './poster/entity/poster.entity';
-import { GenresModule } from './genres/genres.module';
-import { Genres } from './genres/entity/genres.entity';
-import { CastModule } from './cast/cast.module';
-import { MovieCast } from './cast/entity/movie_cast.entity';
-import { Cast } from './cast/entity/cast.entity';
+import { GenresModule } from './catalog/genres/genres.module';
+import { Genres } from './catalog/genres/entity/genres.entity';
+import { CastModule } from './catalog/cast/cast.module';
+import { MovieCast } from './catalog/cast/entity/movie_cast.entity';
+import { Cast } from './catalog/cast/entity/cast.entity';
 import { ClientModule } from './client/client.module';
 import { Client } from './client/entity/client.entity';
 import { MovieRoomModule } from './movie_room/movie_room.module';
@@ -30,6 +30,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { AuthModule } from './auth/auth.module';
 import { Permission } from './auth/permission/entity/permission.entity';
 import { PermissionCategory } from './auth/permission/entity/permission_category.entity';
+import { CatalogModule } from './catalog/catalog.module';
 
 @Module({
   imports: [
@@ -65,17 +66,13 @@ import { PermissionCategory } from './auth/permission/entity/permission_category
       ],
       synchronize: false
     }),
-    MovieModule,
-    IndicativeRatingModule,
     PosterModule,
-    GenresModule,
-    CastModule,
     ClientModule,
     MovieRoomModule,
     MovieSessionModule,
     ReservedSeatsModule,
-    SessionModule,
-    AuthModule
+    AuthModule,
+    CatalogModule
   ]
 })
 export class AppModule {}

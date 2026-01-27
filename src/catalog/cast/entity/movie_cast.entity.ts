@@ -1,4 +1,4 @@
-import { Movie } from "src/movie/entity/movie.entity";
+import { Movie } from "src/catalog/movie/entity/movie.entity";
 import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { Cast } from "./cast.entity";
 import { Field, ObjectType } from "@nestjs/graphql";

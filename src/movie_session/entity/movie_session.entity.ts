@@ -1,4 +1,4 @@
-import { Movie } from "src/movie/entity/movie.entity";
+import { Movie } from "src/catalog/movie/entity/movie.entity";
 import { MovieRoom } from "src/movie_room/entity/movie_room.entity";
 import { ReservedSeats } from "src/reserved_seats/entity/reserved_seats.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
