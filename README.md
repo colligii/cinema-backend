@@ -11,13 +11,16 @@
 - [X] Create CRUD CAST
 - [X] Create CRUD Client
 - [X] Create CRUD Genres
-- [ ] Create CRUD Movie
+- [X] Create CRUD Movie
 - [ ] Test delete Genres with movie associated and not associated
 - [ ] Create CRUD Movie ROOM
+- [ ] Create CRUD Session
 - [ ] Create CRUD Movie Session
 - [ ] Create CRUD Poster
 - [ ] Create CRUD Reserved Seats
-- [ ] Create CRUD Session
+- [ ] Create Update S3
+- [ ] Validate Errors and Methods
+- [ ] Create TDD
 
 
 ## Fields

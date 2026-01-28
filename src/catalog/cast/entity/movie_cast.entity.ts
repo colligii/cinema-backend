@@ -3,6 +3,11 @@ import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToMany, PrimaryCo
 import { Cast } from "./cast.entity";
 import { Field, ObjectType } from "@nestjs/graphql";
 
+export enum MovieCastType {
+    DIRECTOR = 'director',
+    ACTOR = 'actor'
+}
+
 @ObjectType()
 @Entity()
 export class MovieCast {
@@ -24,6 +29,6 @@ export class MovieCast {
     cast: Cast;
 
     @Field()
-    @Column({ type: 'enum', enum: ['director', 'actor'] })
-    type: string;
+    @Column({ type: 'enum', enum: MovieCastType })
+    type: MovieCastType;
 }
