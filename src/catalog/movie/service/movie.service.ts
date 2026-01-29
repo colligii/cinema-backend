@@ -173,8 +173,7 @@ export class MovieService {
     }
 
     async updateMovies(body: UpdateMovie): Promise<Movie> {
-        return this.dataSource.transaction(async (manager) => {
-            const findedMovie2 = await this.getMovieById(body.id);
+        await this.dataSource.transaction(async (manager) => {
             const findedMovie = await manager.findOne(Movie, {
                 where: {
                     id: body.id
@@ -183,8 +182,6 @@ export class MovieService {
                     mode: 'pessimistic_write'
                 },
             })
-
-            console.log(findedMovie, findedMovie2)
 
             if(!findedMovie)
                 throw new NotFoundException(MovieHelper.NotFound);
@@ -198,20 +195,18 @@ export class MovieService {
 
             findedMovie.indicativeRating = await this.patchUpdateIndicativeRating(findedMovie.indicativeRating, body.indicative_rating_id)
             findedMovie.genres = await this.patchUpdateGenres(findedMovie.genres, body.genres_id)
-            
-            console.log(findedMovie)
 
             const movie = await this.saveMovie(manager, findedMovie);
 
             if(Array.isArray(body.movie_cast))
                 movie.movieCast = await this.upsertMovieCasts(body.movie_cast, manager, movie);
-
-            return this.getMovieById(movie.id);
         })
+
+        return this.getMovieById(body.id);
     }
 
     async deleteMovie(id: string): Promise<Movie> {
-        const findedMovie = await this.getMovieById(id);
+        await this.getMovieById(id);
 
         await this.movieRepository.softDelete(id);
 
